@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.detasad'
+//version = 'lwm2msim'
+sourceCompatibility = '1.8'
+archivesBaseName = 'lwm2msim'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	providedRuntime
+	all*.exclude module : 'spring-boot-starter-logging'
+}
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	implementation 'org.eclipse.leshan:leshan-client-cf:2.0.0-M7'
+	//implementation 'org.slf4j:slf4j-simple:1.7.30'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
